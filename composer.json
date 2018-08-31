@@ -1,0 +1,24 @@
+{
+  "name": "dadlian/addendum",
+  "description": "Composer package support for jsuchal/addendum PHP annotations library.",
+  "keywords": ["addendum", "php", "annotations", "jsuchal", "composer"],
+  "license": "DBAD",
+  "authors": [
+    {
+      "name": "Sven James",
+      "email": "sven@kycsar.com"
+    }
+  ],
+  "type": "library",
+  "require": {
+    "php": ">=7.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.*"
+  },
+  "autoload": {
+    "psr-4": {
+        "Dadlian\\Addendum\\": "src/"
+    }
+  }
+}
