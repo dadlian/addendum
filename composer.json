@@ -2,7 +2,7 @@
   "name": "dadlian/addendum",
   "description": "Composer package support for jsuchal/addendum PHP annotations library.",
   "keywords": ["addendum", "php", "annotations", "jsuchal", "composer"],
-  "license": "DBAD",
+  "license": "MIT",
   "authors": [
     {
       "name": "Sven James",
