@@ -22,7 +22,7 @@
 **/
 	namespace Dadlian\Addendum\Annotations;
 	use Dadlian\Addendum\DocComment;
-	
+
   class Addendum {
     private static $rawMode;
     private static $ignore;
@@ -41,7 +41,7 @@
     /** Raw mode test */
     private static function checkRawDocCommentParsingNeeded() {
       if(self::$rawMode === null) {
-        $reflection = new ReflectionClass('Addendum');
+        $reflection = new \ReflectionClass('\Dadlian\Addendum\Annotations\Addendum');
         $method = $reflection->getMethod('checkRawDocCommentParsingNeeded');
         self::setRawMode($method->getDocComment() === false);
       }
@@ -93,7 +93,7 @@
       if(!self::$annotations) {
         self::$annotations = array();
         foreach(get_declared_classes() as $class) {
-          if(is_subclass_of($class, 'Annotation') || $class == 'Annotation') self::$annotations[] = $class;
+          if(is_subclass_of($class, 'Dadlian\Addendum\Annotations\Annotation') || $class == 'Dadlian\Addendum\Annotations\Annotation') self::$annotations[] = $class;
         }
       }
       return self::$annotations;

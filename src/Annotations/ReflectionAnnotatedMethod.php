@@ -1,7 +1,7 @@
 <?php
 	namespace Dadlian\Addendum\Annotations;
 
-  class ReflectionAnnotatedMethod extends ReflectionMethod {
+  class ReflectionAnnotatedMethod extends \ReflectionMethod {
     private $annotations;
 
     public function __construct($class, $name) {

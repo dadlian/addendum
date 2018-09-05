@@ -1,6 +1,8 @@
 <?php
 	namespace Dadlian\Addendum\Annotations;
 
+	use Dadlian\Addendum\Parser\AnnotationsMatcher;
+
   class AnnotationsBuilder {
     private static $cache = array();
 
@@ -20,8 +22,8 @@
 
     public function instantiateAnnotation($class, $parameters, $targetReflection = false) {
       $class = Addendum::resolveClassName($class);
-      if(is_subclass_of($class, 'Annotation') && !Addendum::ignores($class) || $class == 'Annotation') {
-        $annotationReflection = new ReflectionClass($class);
+      if(is_subclass_of($class, 'Dadlian\Addendum\Annotations\Annotation') && !Addendum::ignores($class) || $class == 'Dadlian\Addendum\Annotations\Annotation') {
+        $annotationReflection = new \ReflectionClass($class);
         return $annotationReflection->newInstance($parameters, $targetReflection);
       }
       return false;
@@ -38,9 +40,9 @@
     }
 
     private function createName($target) {
-      if($target instanceof ReflectionMethod) {
+      if($target instanceof \ReflectionMethod) {
         return $target->getDeclaringClass()->getName().'::'.$target->getName();
-      } elseif($target instanceof ReflectionProperty) {
+      } elseif($target instanceof \ReflectionProperty) {
         return $target->getDeclaringClass()->getName().'::$'.$target->getName();
       } else {
         return $target->getName();

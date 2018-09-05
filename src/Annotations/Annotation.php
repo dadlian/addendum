@@ -27,7 +27,7 @@
 		private static $creationStack = array();
 
 		public final function __construct($data = array(), $target = false) {
-			$reflection = new ReflectionClass($this);
+			$reflection = new \ReflectionClass($this);
 			$class = $reflection->getName();
 			if(isset(self::$creationStack[$class])) {
 				trigger_error("Circular annotation reference on '$class'", E_USER_ERROR);
@@ -52,9 +52,9 @@
 				$value = $reflection->getAnnotation('Target')->value;
 				$values = is_array($value) ? $value : array($value);
 				foreach($values as $value) {
-					if($value == 'class' && $target instanceof ReflectionClass) return;
-					if($value == 'method' && $target instanceof ReflectionMethod) return;
-					if($value == 'property' && $target instanceof ReflectionProperty) return;
+					if($value == 'class' && $target instanceof \ReflectionClass) return;
+					if($value == 'method' && $target instanceof \ReflectionMethod) return;
+					if($value == 'property' && $target instanceof \ReflectionProperty) return;
 					if($value == 'nested' && $target === false) return;
 				}
 				if($target === false) {
@@ -66,9 +66,9 @@
 		}
 
 		private function createName($target) {
-			if($target instanceof ReflectionMethod) {
+			if($target instanceof \ReflectionMethod) {
 				return $target->getDeclaringClass()->getName().'::'.$target->getName();
-			} elseif($target instanceof ReflectionProperty) {
+			} elseif($target instanceof \ReflectionProperty) {
 				return $target->getDeclaringClass()->getName().'::$'.$target->getName();
 			} else {
 				return $target->getName();
