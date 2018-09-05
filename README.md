@@ -1,7 +1,7 @@
 Addendum Composer Package
 =========================
 
-Composer package for jsuchal/addendum PHP annotations package
+Composer wrapper for jsuchal/addendum PHP annotations package
 
 Installation
 ------------
