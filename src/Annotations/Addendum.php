@@ -72,11 +72,8 @@
       foreach(self::getDeclaredAnnotations() as $declared) {
         if($declared == $class) {
           $matching[] = $declared;
-        } else {
-          $pos = strrpos($declared, "_$class");
-          if($pos !== false && ($pos + strlen($class) == strlen($declared) - 1)) {
-            $matching[] = $declared;
-          }
+        } else if(preg_match("/\\\\$class$/",$declared)){
+          $matching[] = $declared;
         }
       }
       $result = null;
