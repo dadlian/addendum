@@ -17,12 +17,26 @@
       return $this->annotations->getAnnotation($annotation);
     }
 
+    public function getInheritedAnnotation($annotation) {
+      for ( $rac = $this ; $rac ; $rac = $rac->getParentClass() )
+        if ( $result = $rac->annotations->getAnnotation($annotation) )
+          return $result;
+      return null;
+    }
+
     public function getAnnotations() {
       return $this->annotations->getAnnotations();
     }
 
     public function getAllAnnotations($restriction = false) {
       return $this->annotations->getAllAnnotations($restriction);
+    }
+
+    public function getAllInheritedAnnotations($restriction = false) {
+      $result = array();
+      for ( $rac = $this ; $rac ; $rac = $rac->getParentClass() )
+        $result = array_merge($result, $rac->getAllAnnotations($restriction));
+      return $result;
     }
 
     public function getConstructor() {
