@@ -39,15 +39,15 @@
       return $result;
     }
 
-    public function getConstructor() {
+    public function getConstructor() : ?\ReflectionMethod {
       return $this->createReflectionAnnotatedMethod(parent::getConstructor());
     }
 
-    public function getMethod($name) {
+    public function getMethod($name): \ReflectionMethod {
       return $this->createReflectionAnnotatedMethod(parent::getMethod($name));
     }
 
-    public function getMethods($filter = -1) {
+    public function getMethods($filter = -1): array {
       $result = array();
       foreach(parent::getMethods($filter) as $method) {
         $result[] = $this->createReflectionAnnotatedMethod($method);
@@ -55,11 +55,11 @@
       return $result;
     }
 
-    public function getProperty($name) {
+    public function getProperty($name): \ReflectionProperty {
       return $this->createReflectionAnnotatedProperty(parent::getProperty($name));
     }
 
-    public function getProperties($filter = -1) {
+    public function getProperties($filter = -1): array {
       $result = array();
       foreach(parent::getProperties($filter) as $property) {
         $result[] = $this->createReflectionAnnotatedProperty($property);
@@ -67,7 +67,7 @@
       return $result;
     }
 
-    public function getInterfaces() {
+    public function getInterfaces(): array {
       $result = array();
       foreach(parent::getInterfaces() as $interface) {
         $result[] = $this->createReflectionAnnotatedClass($interface);
@@ -75,7 +75,7 @@
       return $result;
     }
 
-    public function getParentClass() {
+    public function getParentClass(): \ReflectionClass | false {
       $class = parent::getParentClass();
       return $this->createReflectionAnnotatedClass($class);
     }

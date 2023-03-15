@@ -25,7 +25,7 @@
       return $this->annotations->getAllAnnotations($restriction);
     }
 
-    public function getDeclaringClass() {
+    public function getDeclaringClass() : \ReflectionClass {
       $class = parent::getDeclaringClass();
       return new ReflectionAnnotatedClass($class->getName());
     }
